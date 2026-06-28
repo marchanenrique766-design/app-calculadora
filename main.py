@@ -1,9 +1,12 @@
-import streamlit as st
-
-st.title("App de Salud y Bienestar")
-peso = st.number_input("Ingresa tu peso en kg")
-altura = st.number_input("Ingresa tu altura en metros (ej: 1.75)")
-
 if st.button("Calcular IMC"):
-    imc = peso / (altura ** 2)
-    st.write(f"Tu IMC es: {imc:.2f}")
+    if peso > 0 and altura > 0:
+        imc = peso / (altura ** 2)
+        st.write(f"Tu IMC es: {imc:.2f}")
+        if imc < 18.5:
+            st.write("Estado: Bajo peso")
+        elif imc < 25:
+            st.write("Estado: Peso normal")
+        else:
+            st.write("Estado: Sobrepeso o más")
+    else:
+        st.error("Por favor, ingresa valores mayores a cero.")
